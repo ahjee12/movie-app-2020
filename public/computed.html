@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computed</title>
+</head>
+<body>
+    <div id="app">
+        <input v-model.number="price" type="number">원
+        <p>소비세 포함 금액 {{taxIncluded}} 원</p>  
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                price: 100
+            },
+            computed: {
+                taxIncluded: function(){
+                    return this.price * 1.08;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

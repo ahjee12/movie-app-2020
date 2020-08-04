@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>computed5</title>
+</head>
+<body>
+    <div id="app">
+        <p v-bind:style="{backgroundColor: mixColor}">{{mixColor}}</p>
+        <input type="range" v-model="R" min="0" max="255"><br>
+        <input type="range" v-model="G" min="0" max="255"><br>
+        <input type="range" v-model="B" min="0" max="255"><br>
+
+        <!-- <input type="range" v-model="R" min="0" max="255"><br>
+        <input type="range" v-model="G" min="0" max="255"><br>
+        <input type="range" v-model="B" min="0" max="255"><br> -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                R:255,
+                G:255,
+                B:100
+            },
+            computed: {
+                mixColor: function(){
+                    var ans ="RGB("+this.R+","+this.G+","+this.B+")";
+                    return ans;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>140자 이내로 입력해 주세요!!</p>
+        <textarea v-model="myText" cols='30' rows='10'></textarea>
+        <p v-bind:style="{color:computedColor}">남은 글자는{{remaining}}입니다.</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                myText: '오늘은 날씨가 좋습니다.'
+            },
+            computed: {
+                remaining: function(){
+                    return 140 - this.myText.length;
+                },
+                computedColor: function(){
+                    var col;
+                    col = 'green';
+                if(this.remaining<20){
+                    col = 'orange';
+                }
+                if(this.remaning<1){
+                    col = 'red';
+                }
+                return col;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

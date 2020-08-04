@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h2>버튼을 누르면 리스트가 증감할 때 애니메이션 효과를 주는 예제</h2>
+    <div id="app">
+        <transition-group>
+            <li v-for="item in dataArray" v-bind:key="item">{{item}}</li>
+        </transition-group>
+        <label><input v-model="addItem" placeholder="추가할 리스트"></label>
+        <button v-on:click="addList">추가</button>
+        <button v-on:click="removeList">맨뒤 1개 삭제</button>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                dataArray: ['a','b','c','d','e'],
+                addItem: ''
+            },
+            methods: {
+                addList: function(){
+                    this.dataArray.push(this.addItem);
+                    this.addItme = '';
+                },
+                removeList: function(){
+                    var lastIdx = this.dataArray.length -1;
+                    this.dataArray.splice(lastIdx);
+                }
+            }
+        })
+    </script>
+    <style>
+        .v-enter-active, .v-leave-active{
+            transition: 0.5s;
+        }
+        .v-enter, .v-leave-to{
+            opacity: 0;
+            transform: translateX(50px);
+        }
+    </style>
+</body>
+</html>

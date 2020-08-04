@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch3 Vue</title>
+</head>
+<body>
+    <h2>남은 시간을 감시하여 표시하고 0초가 되면 alert를 띄우는 예제</h2>
+    <div id="app">
+        <p>앞으로 {{restSec}}</p>
+        <button v-on:click='startTimer'>START</button>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                restSec: 5,
+                timeObj: null,
+            },
+            methods: {
+                startTimer: function(){
+                    this.restSec = 5;
+                    this.timerObj = setInterval(() => {this.restSec--},1000);
+                }
+            },
+            watch: {
+                restSec: function(){
+                    if( this.restSec <= 0){
+                        alert("끝났습니다.")
+                        clearInterval(this.timerObj);
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

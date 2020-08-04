@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>watch</title>
+</head>
+<body>
+    <h2>입력문자를 감시하여 금지문자가 입력 되면 을 띄우는 예제</h2>
+    <div id="app">
+        <p>금지문자는 {{forbiddenText}}</p>
+        <textarea v-model="inputText" cols="30" rows="10"></textarea>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                forbiddenText: '십팔',
+                inputText: '오늘은 십팔일입니다.'
+            },
+            watch: {
+                inputText: function(){
+                    var pos = this.inputText.indexOf(this.forbiddenText);
+                    if(pos >= 0){
+                        alert(this.forbiddenText+'이 문자는 입력할 수 없습니다.');
+                        this.inputText = this.inputText.subtr(0, pos);
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

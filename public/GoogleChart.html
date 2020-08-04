@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>document</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+    <h2>구글 차트를 이용한 예제</h2>
+    <h3>선호하는 점심 메뉴 투표</h3>
+    <div id="chart_div" style="height: 500px;"></div>
+    <div id="app">
+        <ul>
+            <li v-for="(item, c) in dataArray" v-if="c>0">{{item[0]}} : {{item[1]}}
+                <button v-on: click="addOne(c)">한표</button>
+            </li>
+        </ul>
+    </div>
+    <script>
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawBasic);
+        //그래프에 사용할 데이터
+        var orgdata = [
+            ['종류', '개수'],['제육볶음', 1], ['삼겹살', 3], ['오므라이스', 3],
+            ['짬뽕',4], ['비빔밥', 5], ['메밀소바', 2]
+        ];
+        //그래프를 그리는 함수
+        function drawBasic(){
+            var data = new google.visualization.arrayToDataTable(orgdata);
+            var options = {title: '오늘 먹을 점심은?', "is3D":true};
+            var chart = new google.visualization.PieChart(
+                document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>문자를 입력하면 그 문자를 포함한 항목만 표시하는 예제</h2>
+    <div id="app">
+        <input v-model='findWord'>
+        <ul>
+            <li v-for="item in findItems">{{item}}</li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+          new Vue({
+            el:'#app',
+            data: {
+                findWord: '',
+                items:['점심','취업','언제','하냐']
+            },
+            computed: {
+                findItems: function(){
+                    if(this.findWord){
+                        return this.items.filter(function(value){
+                            return (value.indexOf(this.findWord) > -1);
+                        }, this)
+                    } else {
+                        //this.findWord가 공백일 땐 리스트를 그대로 반환
+                        return this.items;
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

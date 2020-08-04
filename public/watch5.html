@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>watch4</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js"></script>
+
+</head>
+<body>
+    <h2>숫자가 빠르게 올라가는 애니메이션을 보여주며 값이 증가하는 input태그 에제</h2>
+    <div id="app">
+        <p>값은 {{animeNumber}}</p>
+        <input type="number" v-model.number='myNumber'>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                myNumber:  0,
+                gsapNumber: 0
+            },
+            watch: {
+                myNumber: function(){
+                    //data의 gsap프로퍼티를 1초에 myNumber까지 증가시킴
+                    gsap.to(this.$data, 1, {gsapNumber: this.myNumber})
+                }
+            },
+            computed: {
+                animeNumber : function(){
+                    return this.gsapNumber.toFixed(0);
+                }
+            }
+        })
+    </script>
+   
+
+</body>
+</html>
